@@ -11,26 +11,55 @@ def finder(files, queries):
     desired_paths = {}
     undesired_paths = {}
     result = []
+    desired_keys = {}
     i = 0
     k = 0
+
+    for query in queries:
+        desired_keys[query] = 1
+
     for file in files:
         files_split = file.rsplit("/", 1)
-        for query in queries:
-            if files_split[-1] in undesired_paths.keys():
-            # if undesired_paths.get(files_split[-1]):
-                pass
-            elif files_split[-1] != query:
-                    undesired_paths[files_split[-1]] = None
-                    k +=1
-                    print("k", k)
-                    print(k/100000)
-                    # # print(files_split[-1])
-                    # print(undesired_paths)
-        for query in queries:
-            if files_split[-1] == query:
-                desired_paths[i] = file
+ 
+        # if files_split[-1] in undesired_paths.keys():
+
+        #         pass
+        # elif files_split[-1] not in desired_keys:
+        #             undesired_paths[files_split[-1]] = None
+        #             k +=1
+        #             print("k", k)
+        #             print(k/100000)
+        #             # # print(files_split[-1])
+        #             # print(undesired_paths)
+        
+        if desired_keys.get(files_split[-1]) == 1:
+                result.append(file)
+                # desired_paths[i] = file
                 i += 1
                 print(i)
+                print("result", len(result))
+
+
+    #----------------------
+    # for file in files:
+    #     files_split = file.rsplit("/", 1)
+    #     for query in queries:
+    #         if files_split[-1] in undesired_paths.keys():
+    #         # if undesired_paths.get(files_split[-1]):
+    #             pass
+    #         elif files_split[-1] != query:
+    #                 undesired_paths[files_split[-1]] = None
+    #                 k +=1
+    #                 print("k", k)
+    #                 print(k/100000)
+    #                 # # print(files_split[-1])
+    #                 # print(undesired_paths)
+    #     for query in queries:
+    #         if files_split[-1] == query:
+    #             desired_paths[i] = file
+    #             i += 1
+    #             print(i)
+                #-------------------------
             # else:
             #     print("eliminating")
             #     pass
@@ -38,10 +67,10 @@ def finder(files, queries):
         # print("all files to set")
         # for item in all_file_paths:
             # result.append(all_file_paths[file][0])
-    for k in range(0, i):
-        result.append(desired_paths[k])
-        print("appending")
-        # for query in queries:
+    # for k in range(0, i):
+    #     result.append(desired_paths[k])
+    #     print("appending")
+    #     # for query in queries:
           
             # if all_file_paths[file][1][-1] == query:
             #         print("hit")
@@ -97,7 +126,7 @@ def finder(files, queries):
     #         result.remove(resulting_string)
     #     else:
     #         pass
-    print("result", result)
+    # print("result", result)
 
     return result
 
