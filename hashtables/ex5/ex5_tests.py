@@ -35,7 +35,7 @@ class TestEx2(unittest.TestCase):
             files.append(f"/dir{i}/dirb{i}/file{i}")
 
         queries = []
-
+        print("making queries")
         for i in range(1000000):
             queries.append(f"nofile{i}")
 
@@ -45,8 +45,9 @@ class TestEx2(unittest.TestCase):
             "file999999",
             "file8192"
         ]
-
+        print("making result")
         result = finder(files, queries)
+        print("sorting")
         result.sort()
 
         self.assertTrue(result == ['/dir256/dirb256/file256',
