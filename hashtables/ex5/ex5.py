@@ -16,12 +16,16 @@ def finder(files, queries):
     for file in files:
         files_split = file.rsplit("/", 1)
         for query in queries:
-            if undesired_paths.get(files_split[-1]):
-                continue
+            if files_split[-1] in undesired_paths.keys():
+            # if undesired_paths.get(files_split[-1]):
+                pass
             elif files_split[-1] != query:
-                    undesired_paths[k] = files_split[-1]
+                    undesired_paths[files_split[-1]] = None
                     k +=1
                     print("k", k)
+                    print(k/100000)
+                    # # print(files_split[-1])
+                    # print(undesired_paths)
         for query in queries:
             if files_split[-1] == query:
                 desired_paths[i] = file
