@@ -6,23 +6,37 @@ def finder(files, queries):
     """
     # Your code here
     # all_file_paths =[]
-    all_file_paths = {}
+    # all_file_paths = {}
     # new_dict = {}
+    desired_paths = {}
+    undesired_paths = {}
     result = []
     i = 0
+    k = 0
     for file in files:
         files_split = file.rsplit("/", 1)
         for query in queries:
-            if files_split[-1] != query:
-                pass
-            else:
+            if undesired_paths.get(files_split[-1]):
+                continue
+            elif files_split[-1] != query:
+                    undesired_paths[k] = files_split[-1]
+                    k +=1
+                    print("k", k)
+        for query in queries:
+            if files_split[-1] == query:
+                desired_paths[i] = file
+                i += 1
+                print(i)
+            # else:
+            #     print("eliminating")
+            #     pass
         #         all_file_paths[file] = [file, files_split]
         # print("all files to set")
         # for item in all_file_paths:
             # result.append(all_file_paths[file][0])
-                result.append(file)
-                i+=1
-                print(i)
+    for k in range(0, i):
+        result.append(desired_paths[k])
+        print("appending")
         # for query in queries:
           
             # if all_file_paths[file][1][-1] == query:
